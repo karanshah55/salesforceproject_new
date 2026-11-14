@@ -1,0 +1,14 @@
+{
+  "create": {
+    "Salutation": "Ms.",
+    "FirstName": "Api",
+    "LastName": "Lead",
+    "Company": "Playwright API Corp",
+    "Email": "api.lead@example.com",
+    "Phone": "9876500000"
+  },
+  "update": {
+    "LastName": "Lead1",
+    "Title": "QA Lead"
+  }
+}

@@ -1,0 +1,8 @@
+# Setup (opened in a new tab from Quick Settings -> Open Advanced Setup).
+setup :
+  # "Quick Find" search box at the top of the left-hand Setup menu.
+  quick_find : //input[@placeholder='Quick Find'] >> visible=true >> nth=0
+  # A filtered menu entry whose text is exactly the name (so "App Manager" never picks
+  # "External Client App Manager").
+  menu_result : //*[@role='treeitem']//a[normalize-space(.)='{name}'] >> visible=true >> nth=0
+  page_heading : //*[self::h1 or self::h2][normalize-space()='{heading}'] >> visible=true >> nth=0

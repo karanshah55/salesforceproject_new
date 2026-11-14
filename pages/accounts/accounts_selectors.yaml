@@ -1,0 +1,25 @@
+# Accounts tab / list view - shared by every CRUD operation.
+accounts :
+  accounts_tab : //one-app-nav-bar-item-root/a[@title='Accounts']
+  new_button : //a[@title='New']
+  search_input : //input[@name='Account-search-input']
+  # Row "Show Actions" dropdown (last cell) of the first *visible* row whose Name link is exactly
+  # the name (so "Acme" never picks "Acme1") - Lightning keeps hidden list copies.
+  row_actions : //table//tr[.//a[@title='{name}']]/td[last()]//a[@role='button'] >> visible=true >> nth=0
+
+# Account record form - used by Create and Edit.
+account_form :
+  account_name : //records-record-layout-item//input[@name='Name']
+  phone : //records-record-layout-item//input[@name='Phone']
+  website : //records-record-layout-item//input[@name='Website']
+  save_button : //records-form-footer//button[@name='SaveEdit']
+
+# Edit from the list view row actions menu; the pop-up reuses the account_form selectors.
+edit_account :
+  edit_action : //div[contains(@class,'uiMenuList') and contains(@class,'visible')]//a[@title='Edit']
+
+# Delete from the list view row actions menu, then confirm in the pop-up.
+delete_account :
+  delete_action : //div[contains(@class,'uiMenuList') and contains(@class,'visible')]//a[@title='Delete']
+  confirm_delete : //div[contains(@class,'modal-footer')]//button[@title='Delete']
+  deleted_toast : //span[contains(@class,'toastMessage') and contains(normalize-space(),'was deleted')]

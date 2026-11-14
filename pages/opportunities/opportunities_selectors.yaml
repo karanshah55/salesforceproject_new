@@ -1,0 +1,32 @@
+# Opportunities tab / list view - shared by every CRUD operation.
+opportunities :
+  opportunities_tab : //one-app-nav-bar-item-root/a[@title='Opportunities']
+  new_button : //a[@title='New']
+  search_input : //input[@name='Opportunity-search-input']
+  # Row "Show Actions" dropdown (last cell) of the first *visible* row whose Name link is exactly
+  # the name (so "Deal" never picks "Deal1") - Lightning keeps hidden list copies.
+  row_actions : //table//tr[.//a[@title='{name}']]/td[last()]//a[@role='button'] >> visible=true >> nth=0
+
+# Opportunity record form - used by Create and Edit.
+# Forecast Category is required too, but Salesforce fills it from the Stage (Qualify -> Pipeline).
+opportunity_form :
+  opportunity_name : //records-record-layout-item//input[@name='Name']
+  # Required lookup: type the name, then pick the matching existing Account (ids start "001").
+  account_name : //records-record-layout-item//input[@aria-label='Account Name']
+  account_option : lightning-base-combobox-item[role=option][data-value^='001']:has-text('{value}') >> visible=true >> nth=0
+  # Typed in the org's date format (DD/MM/YYYY).
+  close_date : //records-record-layout-item//input[@name='CloseDate']
+  stage : //records-record-layout-item//button[@aria-label='Stage']
+  stage_option : //lightning-base-combobox-item[@data-value='{value}'] >> visible=true >> nth=0
+  amount : //records-record-layout-item//input[@name='Amount']
+  save_button : //records-form-footer//button[@name='SaveEdit']
+
+# Edit from the list view row actions menu; the pop-up reuses the opportunity_form selectors.
+edit_opportunity :
+  edit_action : //div[contains(@class,'uiMenuList') and contains(@class,'visible')]//a[@title='Edit']
+
+# Delete from the list view row actions menu, then confirm in the pop-up.
+delete_opportunity :
+  delete_action : //div[contains(@class,'uiMenuList') and contains(@class,'visible')]//a[@title='Delete']
+  confirm_delete : //div[contains(@class,'modal-footer')]//button[@title='Delete']
+  deleted_toast : //span[contains(@class,'toastMessage') and contains(normalize-space(),'was deleted')]

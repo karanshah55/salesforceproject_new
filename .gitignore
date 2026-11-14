@@ -1,0 +1,15 @@
+# Secrets (copy by hand, never commit)
+.auth/
+pages/login/login_values.json
+
+# Generated output
+reports/
+screenshots/
+.pytest_cache/
+__pycache__/
+*.pyc
+
+# Local environments / editor
+.venv/
+venv/
+.vscode/

@@ -1,0 +1,31 @@
+# Contacts tab / list view - shared by every CRUD operation.
+contacts :
+  contacts_tab : //one-app-nav-bar-item-root/a[@title='Contacts']
+  new_button : //a[@title='New']
+  search_input : //input[@name='Contact-search-input']
+  # Row "Show Actions" dropdown (last cell) of the first *visible* row whose Name link is exactly
+  # the name (so "Jane Doe" never picks "Jane Doe1") - Lightning keeps hidden list copies.
+  row_actions : //table//tr[.//a[@title='{name}']]/td[last()]//a[@role='button'] >> visible=true >> nth=0
+
+# Contact record form - used by Create and Edit.
+contact_form :
+  salutation : //lightning-input-name//lightning-combobox[.//label[normalize-space()='Salutation']]//button
+  salutation_option : //lightning-base-combobox-item[@data-value='{value}']
+  first_name : //lightning-input-name//input[@name='firstName']
+  last_name : //lightning-input-name//input[@name='lastName']
+  # Required lookup: type the name, then pick the matching existing Account (ids start "001").
+  account_name : //records-record-layout-item//input[@aria-label='Account Name']
+  account_option : lightning-base-combobox-item[role=option][data-value^='001']:has-text('{value}') >> visible=true >> nth=0
+  email : //records-record-layout-item//input[@name='Email']
+  phone : //records-record-layout-item//input[@name='Phone']
+  save_button : //records-form-footer//button[@name='SaveEdit']
+
+# Edit from the list view row actions menu; the pop-up reuses the contact_form selectors.
+edit_contact :
+  edit_action : //div[contains(@class,'uiMenuList') and contains(@class,'visible')]//a[@title='Edit']
+
+# Delete from the list view row actions menu, then confirm in the pop-up.
+delete_contact :
+  delete_action : //div[contains(@class,'uiMenuList') and contains(@class,'visible')]//a[@title='Delete']
+  confirm_delete : //div[contains(@class,'modal-footer')]//button[@title='Delete']
+  deleted_toast : //span[contains(@class,'toastMessage') and contains(normalize-space(),'was deleted')]

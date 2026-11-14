@@ -1,0 +1,31 @@
+# Products tab / list view - shared by every CRUD operation.
+products :
+  products_tab : //one-app-nav-bar-item-root/a[@title='Products']
+  new_button : //a[@title='New']
+  search_input : //input[@name='Product2-search-input']
+  # Row "Show Actions" dropdown (last cell) of the first *visible* row whose Name link is exactly
+  # the name (so "Widget" never picks "Widget1") - Lightning keeps hidden list copies.
+  row_actions : //table//tr[.//a[@title='{name}']]/td[last()]//a[@role='button'] >> visible=true >> nth=0
+
+# "New Product" is a 2-step wizard: product details -> Next -> optional Price Book Entry -> Finish.
+new_product_wizard :
+  product_name : //input[@name='Name'] >> visible=true >> nth=0
+  product_code : //input[@name='ProductCode'] >> visible=true >> nth=0
+  description : //textarea[@name='Description'] >> visible=true >> nth=0
+  next_button : //button[normalize-space()='Next'] >> visible=true >> nth=0
+  finish_button : //button[normalize-space()='Finish'] >> visible=true >> nth=0
+
+# Edit pop-up - the standard record form.
+product_form :
+  product_name : //records-record-layout-item//input[@name='Name']
+  save_button : //records-form-footer//button[@name='SaveEdit']
+
+# Edit from the list view row actions menu; the pop-up uses the product_form selectors.
+edit_product :
+  edit_action : //div[contains(@class,'uiMenuList') and contains(@class,'visible')]//a[@title='Edit']
+
+# Delete from the list view row actions menu, then confirm in the pop-up.
+delete_product :
+  delete_action : //div[contains(@class,'uiMenuList') and contains(@class,'visible')]//a[@title='Delete']
+  confirm_delete : //div[contains(@class,'modal-footer')]//button[@title='Delete']
+  deleted_toast : //span[contains(@class,'toastMessage') and contains(normalize-space(),'was deleted')]

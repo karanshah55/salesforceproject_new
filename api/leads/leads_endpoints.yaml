@@ -1,0 +1,8 @@
+# Salesforce REST API endpoints for Leads. {version} comes from api/api_config.yaml.
+leads :
+  # POST a new Lead.
+  sobject : /services/data/v{version}/sobjects/Lead
+  # GET / PATCH / DELETE one Lead by id.
+  record : /services/data/v{version}/sobjects/Lead/{record_id}
+  # GET with ?q=<SOQL> to search Leads.
+  query : /services/data/v{version}/query

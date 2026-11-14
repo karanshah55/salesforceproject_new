@@ -1,0 +1,5 @@
+login :
+  url : https://java-speed-39173.my.salesforce.com/
+  username : //*[@id="username"]
+  login_button : //*[@id="Login"]
+  password : //*[@id="password"]

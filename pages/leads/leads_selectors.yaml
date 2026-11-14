@@ -1,0 +1,33 @@
+# Leads tab / list view - shared by every CRUD operation.
+leads :
+  leads_tab : //one-app-nav-bar-item-root/a[@title='Leads']
+  new_button : //a[@title='New']
+  search_input : //input[@name='Lead-search-input']
+  # Column header labels of the list view (the <th> itself has zero height; its label is shown).
+  column_headers : //table//thead//th//span[contains(@class,'slds-truncate') and @title]
+  # Row "Show Actions" dropdown (last cell) of the first *visible* row whose Name link is exactly
+  # the name (so "John Smith" never picks "John Smith1") - Lightning keeps hidden list copies.
+  row_actions : //table//tr[.//a[@title='{name}']]/td[last()]//a[@role='button'] >> visible=true >> nth=0
+  # Name link of that same row - carries the Salesforce record id (data-recordid).
+  row_name_link : //table//tr//a[@title='{name}'][@data-recordid] >> visible=true >> nth=0
+  # A visible list row for one specific record.
+  record_row : //table//tr[.//a[@data-recordid='{record_id}']] >> visible=true
+
+# Lead record form - used by Create (and Edit when Update is added).
+lead_form :
+  salutation : //lightning-input-name//lightning-combobox[.//label[normalize-space()='Salutation']]//button
+  salutation_option : //lightning-base-combobox-item[@data-value='{value}']
+  first_name : //lightning-input-name//input[@name='firstName']
+  last_name : //lightning-input-name//input[@name='lastName']
+  company : //records-record-layout-item//input[@name='Company']
+  save_button : //records-form-footer//button[@name='SaveEdit']
+
+# Edit from the list view row actions menu; the pop-up reuses the lead_form selectors.
+edit_lead :
+  edit_action : //div[contains(@class,'uiMenuList') and contains(@class,'visible')]//a[@title='Edit']
+
+# Delete from the list view row actions menu, then confirm in the pop-up.
+delete_lead :
+  delete_action : //div[contains(@class,'uiMenuList') and contains(@class,'visible')]//a[@title='Delete']
+  confirm_delete : //div[contains(@class,'modal-footer')]//button[@title='Delete']
+  deleted_toast : //span[contains(@class,'toastMessage') and contains(normalize-space(),'was deleted')]

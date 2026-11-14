@@ -1,0 +1,7 @@
+profile_menu :
+  view_profile : //span[contains(@class,'forceSocialPhoto')]//div[contains(@class,'profileTrigger')]
+
+# Gear icon in the header; its panel links to Setup, which opens in a new tab.
+quick_settings :
+  quick_settings_button : //button[@aria-label='Quick Settings'] >> visible=true >> nth=0
+  advanced_setup_link : //a[contains(@class,'setupLink') and contains(@href,'/lightning/setup/home')] >> visible=true >> nth=0

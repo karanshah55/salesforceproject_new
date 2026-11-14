@@ -1,0 +1,2 @@
+logout :
+  logout_link : //a[contains(@href,'/secur/logout.jsp')]
