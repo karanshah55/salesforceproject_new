@@ -30,6 +30,7 @@ class LoginPage(BasePage):
         self.username_input = config["username"]
         self.password_input = config["password"]
         self.login_button = config["login_button"]
+        #comment
 
     def navigate(self) -> "LoginPage":
         self.open(self.url)
