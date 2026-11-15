@@ -14,6 +14,7 @@ VALUES_FILE = LOGIN_DIR / "login_values.json"
 VERIFICATION_URL_PART = "/_ui/identity/verification/"
 LOGGED_IN_URL_PART = "/lightning/"
 VERIFICATION_TIMEOUT = 300_000  # ms - time allowed to type the emailed code by hand
+#commenting just like that
 
 
 def load_login_values() -> dict:
