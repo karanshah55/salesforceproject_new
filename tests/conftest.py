@@ -3,6 +3,7 @@ import pytest
 from api.base_api import new_api_request
 from api.leads import load_lead_api_values
 from pages.accounts import load_account_values
+from pages.case import load_case_values
 from pages.contacts import load_contact_values
 from pages.leads import load_lead_values
 from pages.login import load_login_values
@@ -23,6 +24,7 @@ TEST_ORDER = [
     "test_opportunities",
     "test_products",
     "test_setup",
+    "test_case",  # switches to the Service app, so it runs after the other app tests
     "test_logout",
 ]
 PREREQUISITES = {
@@ -33,6 +35,7 @@ PREREQUISITES = {
     "test_opportunities": ["test_login"],
     "test_products": ["test_login"],
     "test_setup": ["test_login"],
+    "test_case": ["test_login"],
     "test_logout": ["test_login"],
 }
 # Whenever a run logs in, it also ends by logging out (TEST_ORDER puts it last).
@@ -158,3 +161,8 @@ def product_details() -> dict:
 @pytest.fixture(scope="session")
 def setup_details() -> dict:
     return load_setup_values()
+
+
+@pytest.fixture(scope="session")
+def case_details() -> dict:
+    return load_case_values()

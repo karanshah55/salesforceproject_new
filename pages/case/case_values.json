@@ -1,0 +1,9 @@
+{
+  "status": "Working",
+  "case_origin": "Phone",
+  "priority": "High",
+  "contact_name": "John Smith",
+  "account_name": "HSBC",
+  "subject": "Playwright Test Case",
+  "description": "Created by the Playwright test suite"
+}

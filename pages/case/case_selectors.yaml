@@ -1,0 +1,33 @@
+# Left-hand vertical app menu: each app is an "appItem" link labelled underneath (Home, Service, ...).
+app_menu :
+  service_app : //a[contains(@class,'appItem')][.//span[contains(@class,'appItemLabel') and normalize-space()='Service']]
+  # Salesforce sometimes shows a "Sorry to interrupt" error pop-up right after login; OK closes it.
+  error_dialog_ok : //div[contains(@class,'modal-container')][.//*[normalize-space()='Sorry to interrupt']]//button[normalize-space()='OK']
+
+# Cases tab / list view in the Service app.
+cases :
+  cases_tab : //one-app-nav-bar-item-root/a[@title='Cases']
+  new_button : //a[@title='New']
+  search_input : //input[@name='Case-search-input']
+
+# "New Case" pop-up.
+case_form :
+  modal_title : //h2[normalize-space()='New Case']
+  # Lightning dropdowns: click the button, then the option with that value.
+  status : //records-record-layout-item//button[@aria-label='Status']
+  case_origin : //records-record-layout-item//button[@aria-label='Case Origin']
+  priority : //records-record-layout-item//button[@aria-label='Priority']
+  picklist_option : //lightning-base-combobox-item[@data-value='{value}'] >> visible=true >> nth=0
+  # Lookups: type the name, then pick the matching existing record (Contact ids start "003", Account ids "001").
+  contact_name : //records-record-layout-item//input[@aria-label='Contact Name']
+  contact_option : lightning-base-combobox-item[role=option][data-value^='003']:has-text('{value}') >> visible=true >> nth=0
+  account_name : //records-record-layout-item//input[@aria-label='Account Name']
+  account_option : lightning-base-combobox-item[role=option][data-value^='001']:has-text('{value}') >> visible=true >> nth=0
+  subject : //records-record-layout-item//input[@name='Subject']
+  description : //records-record-layout-item//textarea
+  save_button : //records-form-footer//button[@name='SaveEdit']
+
+# Proof the case was saved.
+created_case :
+  # 'Case "00001001" was created.'
+  created_toast : //span[contains(@class,'toastMessage') and contains(normalize-space(),'was created')]

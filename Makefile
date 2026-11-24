@@ -2,6 +2,7 @@
 #
 #   make test login leads logout   login -> Lead tests (columns + create/edit/delete) -> logout
 #   make test contacts accounts    login and logout are added automatically
+#   make test case                 login -> create a Case in the Service app -> logout
 #   make test                      every test, same as plain `pytest`
 #   make test leads ARGS=-v        extra pytest options go in ARGS
 #   make list leads                show what would run, without opening the browser
@@ -12,7 +13,7 @@
 PYTHON ?= python
 ARGS ?=
 
-MODULES := login leads leads_api contacts accounts opportunities products setup logout
+MODULES := login leads leads_api contacts accounts opportunities products setup case logout
 
 ifneq ($(filter $(firstword $(MAKECMDGOALS)),test list),)
   SELECTED := $(wordlist 2,$(words $(MAKECMDGOALS)),$(MAKECMDGOALS))
