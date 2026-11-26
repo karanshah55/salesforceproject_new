@@ -1,0 +1,6 @@
+# Salesforce REST API endpoints for Product2. {version} comes from api/api_config.yaml.
+products :
+  name : Product2
+  sobject : /services/data/v{version}/sobjects/Product2
+  record : /services/data/v{version}/sobjects/Product2/{record_id}
+  query : /services/data/v{version}/query

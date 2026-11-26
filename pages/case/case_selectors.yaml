@@ -1,8 +1,6 @@
 # Left-hand vertical app menu: each app is an "appItem" link labelled underneath (Home, Service, ...).
 app_menu :
   service_app : //a[contains(@class,'appItem')][.//span[contains(@class,'appItemLabel') and normalize-space()='Service']]
-  # Salesforce sometimes shows a "Sorry to interrupt" error pop-up right after login; OK closes it.
-  error_dialog_ok : //div[contains(@class,'modal-container')][.//*[normalize-space()='Sorry to interrupt']]//button[normalize-space()='OK']
 
 # Cases tab / list view in the Service app.
 cases :

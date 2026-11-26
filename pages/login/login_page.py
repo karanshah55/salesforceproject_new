@@ -13,7 +13,7 @@ VALUES_FILE = LOGIN_DIR / "login_values.json"
 
 VERIFICATION_URL_PART = "/_ui/identity/verification/"
 LOGGED_IN_URL_PART = "/lightning/"
-VERIFICATION_TIMEOUT = 300_000  # ms - time allowed to type the emailed code by hand
+VERIFICATION_TIMEOUT = 300_000  # ms - time allowed to finish identity check (passkey/code) by hand
 #commenting just like that
 
 
@@ -69,8 +69,10 @@ class LoginPage(BasePage):
             # Only needed once: the saved device state lets later runs skip this screen.
             try:
                 print(
-                    "\n>>> Salesforce sent a verification code to your email. Enter it in the "
-                    "browser and click Verify (keep 'Don't ask again' ticked).",
+                    "\n>>> Salesforce needs you to verify your identity in the Chrome window: "
+                    "approve the passkey (Windows Hello), or choose 'Use password instead' / enter "
+                    "the emailed code. Keep 'Don't ask again' / trust this device ticked so the next "
+                    "runs skip this. Waiting up to 5 minutes...",
                     file=sys.__stderr__,
                     flush=True,
                 )

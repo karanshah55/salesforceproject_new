@@ -1,6 +1,7 @@
 # Secrets (copy by hand, never commit)
 .auth/
 pages/login/login_values.json
+api/oauth_values.json
 
 # Generated output
 reports/

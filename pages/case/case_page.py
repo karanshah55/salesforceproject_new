@@ -24,7 +24,6 @@ class CasePage(BasePage):
         super().__init__(page)
         app_menu = load_selectors(SELECTORS_FILE, "app_menu")
         self.service_app = app_menu["service_app"]
-        self.error_dialog_ok = app_menu["error_dialog_ok"]
 
         cases = load_selectors(SELECTORS_FILE, "cases")
         self.cases_tab = cases["cases_tab"]
@@ -50,17 +49,8 @@ class CasePage(BasePage):
 
     # --- Navigation -----------------------------------------------------------------
 
-    def close_error_dialog(self) -> "CasePage":
-        # The "Sorry to interrupt" pop-up blocks every click until it is closed.
-        ok = self.locator(self.error_dialog_ok)
-        if ok.count() and ok.first.is_visible():
-            ok.first.click()
-            self.pause()
-        return self
-
     def open_service_app(self) -> "CasePage":
         """Left-hand menu -> Service."""
-        self.close_error_dialog()
         self.click_if_enabled(self.service_app)
         return self
 

@@ -1,0 +1,12 @@
+{
+  "create": {
+    "Name": "API Test Product",
+    "ProductCode": "PW-API-001",
+    "Description": "Created by the Playwright API suite",
+    "IsActive": true
+  },
+  "update": {
+    "Name": "API Test Product Updated",
+    "IsActive": false
+  }
+}

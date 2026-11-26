@@ -1,0 +1,12 @@
+{
+  "create": {
+    "Name": "API Test Opportunity",
+    "StageName": "Prospecting",
+    "CloseDate": "2026-12-31",
+    "Amount": 50000
+  },
+  "update": {
+    "StageName": "Closed Won",
+    "Amount": 99999
+  }
+}

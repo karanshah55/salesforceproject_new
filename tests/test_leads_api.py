@@ -3,8 +3,9 @@ import pytest
 from api.leads import LeadsApi
 
 
-# Lead CRUD over the Salesforce REST API. They run after test_login (see conftest), reusing its
-# session, top to bottom: create -> get -> query -> update -> delete the same lead.
+# Lead CRUD over the Salesforce REST API. The api_request fixture authenticates with the OAuth
+# Client Credentials flow (no browser, no login), so these can run on their own. Top to bottom:
+# create -> get -> query -> update -> delete the same lead.
 
 
 @pytest.fixture(scope="module")

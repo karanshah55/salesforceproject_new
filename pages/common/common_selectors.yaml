@@ -1,6 +1,22 @@
 profile_menu :
   view_profile : //span[contains(@class,'forceSocialPhoto')]//div[contains(@class,'profileTrigger')]
 
+# Pop-ups that can appear at any time and block the page; closed automatically (see popups.py).
+popups :
+  # "Your trial has ended - Don't lose access!" pop-up, closed with its X button.
+  trial_ended_dialog : //div[@role='dialog'][.//h1[contains(normalize-space(),'lose access')]]
+  trial_ended_close : //div[@role='dialog'][.//h1[contains(normalize-space(),'lose access')]]//button[@title='Cancel and close']
+  # Salesforce's own "Sorry to interrupt" error box, closed with its X (white circle) button.
+  aura_error_dialog : //div[@id='auraError' and @role='dialog']
+  aura_error_close : //div[@id='auraError']//a[@id='dismissError']
+  # Cancel button of a record form (New/Edit pop-up) left open by a failed test.
+  open_form_cancel : //records-form-footer//button[@name='CancelEdit'] >> visible=true >> nth=0
+
+# Signs about the org itself.
+org_status :
+  # Red banner shown once the trial has ended: the org is read-only (no add, edit or delete).
+  read_only_banner : //b[normalize-space()='Your trial has ended.']
+
 # Gear icon in the header; its panel links to Setup, which opens in a new tab.
 quick_settings :
   quick_settings_button : //button[@aria-label='Quick Settings'] >> visible=true >> nth=0

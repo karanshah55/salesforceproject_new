@@ -1,0 +1,6 @@
+# Salesforce REST API endpoints for Account. {version} comes from api/api_config.yaml.
+accounts :
+  name : Account
+  sobject : /services/data/v{version}/sobjects/Account
+  record : /services/data/v{version}/sobjects/Account/{record_id}
+  query : /services/data/v{version}/query

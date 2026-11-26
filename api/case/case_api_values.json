@@ -1,0 +1,13 @@
+{
+  "create": {
+    "Subject": "API Test Case",
+    "Status": "New",
+    "Origin": "Phone",
+    "Priority": "High",
+    "Description": "Created by the Playwright API suite"
+  },
+  "update": {
+    "Status": "Working",
+    "Priority": "Low"
+  }
+}

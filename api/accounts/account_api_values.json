@@ -1,0 +1,12 @@
+{
+  "create": {
+    "Name": "API Test Account",
+    "Phone": "9876500000",
+    "Website": "www.apitestaccount.com",
+    "Industry": "Technology"
+  },
+  "update": {
+    "Name": "API Test Account Updated",
+    "Phone": "9999900000"
+  }
+}

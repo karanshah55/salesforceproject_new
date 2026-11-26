@@ -134,9 +134,10 @@ class RunReport:
         terminal.write_line("")
         terminal.write_line("Evidence saved in:")
         for folder in evidence:
-            terminal.write_line(f"  {_relative(folder)}  ({len(list(folder.glob('*.png')))} screenshots)")
+            count = len([f for f in folder.iterdir() if f.is_file()])
+            terminal.write_line(f"  {_relative(folder)}  ({count} file(s))")
         if not evidence:
-            terminal.write_line("  (no screenshots were taken in this run)")
+            terminal.write_line("  (no evidence was saved in this run)")
 
         terminal.write_line("")
         terminal.write_line(f"HTML report: {_relative(report_file)}  (latest run: reports/latest.html)", bold=True)
@@ -190,12 +191,19 @@ class RunReport:
                 f"<figcaption>{esc(image.name)}</figcaption></figure>"
                 for image in images
             )
+            # Non-image evidence (e.g. API request/response HTML) is listed as links.
+            others = sorted(f for f in folder.iterdir() if f.is_file() and f.suffix != ".png")
+            links = "".join(
+                f'<li><a href="{_link(f)}" target="_blank">{esc(f.name)}</a></li>' for f in others
+            )
+            links_html = f'<ul class="files">{links}</ul>' if links else ""
+            count = len(images) + len(others)
             blocks.append(
                 f'<div class="evidence"><a class="folder" href="{_link(folder)}">{esc(_relative(folder))}</a>'
-                f'<span class="meta"> &middot; {len(images)} screenshot(s)</span>'
-                f'<div class="thumbs">{thumbs}</div></div>'
+                f'<span class="meta"> &middot; {count} file(s)</span>'
+                f'<div class="thumbs">{thumbs}</div>{links_html}</div>'
             )
-        evidence_html = "".join(blocks) or '<p class="meta">No screenshots were taken in this run.</p>'
+        evidence_html = "".join(blocks) or '<p class="meta">No evidence was saved in this run.</p>'
 
         return f"""<!doctype html>
 <html lang="en">

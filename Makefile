@@ -13,7 +13,7 @@
 PYTHON ?= python
 ARGS ?=
 
-MODULES := login leads leads_api contacts accounts opportunities products setup case logout
+MODULES := login leads leads_api contacts accounts opportunities products setup case logout \n           account_api case_api opportunity_api product_api
 
 ifneq ($(filter $(firstword $(MAKECMDGOALS)),test list),)
   SELECTED := $(wordlist 2,$(words $(MAKECMDGOALS)),$(MAKECMDGOALS))

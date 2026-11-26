@@ -1,5 +1,7 @@
 # Salesforce REST API settings shared by every API object.
 api :
-  # My Domain host - the only domain whose session cookie the REST API accepts.
-  base_url : https://java-speed-39173.my.salesforce.com
+  # My Domain host - used for the OAuth token request and as the default API host.
+  base_url : https://orgfarm-d0fe647aa3-dev-ed.develop.my.salesforce.com
   version : "68.0"
+  # OAuth 2.0 token endpoint for the Client Credentials flow (server-to-server, no browser).
+  token_path : /services/oauth2/token

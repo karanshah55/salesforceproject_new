@@ -1,0 +1,6 @@
+# Salesforce REST API endpoints for Case. {version} comes from api/api_config.yaml.
+case :
+  name : Case
+  sobject : /services/data/v{version}/sobjects/Case
+  record : /services/data/v{version}/sobjects/Case/{record_id}
+  query : /services/data/v{version}/query
